@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+
+  <title>CodePen - Todo List UI with VueJs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link rel="stylesheet" href="">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<main id="todolist">
+  <h1>
+    Todo List
+    <span>Get things done, one item at a time.</span>
+  </h1>
+
+  <template v-if="todo.length">
+    <transition-group name="todolist" tag="ul">
+      <li>
+        <span class="label"></span>
+        <div class="actions">
+          <button class="btn-picto" type="button">
+            <i aria-hidden="true" class="material-icons"></i>
+          </button>
+          <button class="btn-picto" type="button" aria-label="Delete" title="Delete">
+            <i aria-hidden="true" class="material-icons">delete</i>
+          </button>
+        </div>
+      </li>
+    </transition-group>
+    <togglebutton 
+                  label="Move done items at the end?"
+                  name="todosort"
+                  />
+  </template>
+  <p v-else class="emptylist">Your todo list is empty.</p>
+
+  <form name="newform">
+    <label for="newitem">Add to the todo list</label>
+    <input type="text" name="newitem" id="newitem" v-model="newitem">
+    <button type="submit">Add item</button>
+  </form>
+</main>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
