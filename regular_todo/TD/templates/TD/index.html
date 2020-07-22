@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="{% static 'TD/style.css'%}">
 
 </head>
 <body>
@@ -21,31 +21,59 @@
     <span>Get things done, one item at a time.</span>
   </h1>
 
-  <template v-if="todo.length">
-    <transition-group name="todolist" tag="ul">
-      <li>
-        <span class="label"></span>
+  <ul>
+    {% for todo in todo_list %}
+      {% if todo.complete %}
+    <li class="done">
+        <span class="label">{{ todo.text }}</span>
         <div class="actions">
+          <a href="#">
           <button class="btn-picto" type="button">
-            <i aria-hidden="true" class="material-icons"></i>
+            1
+            <i aria-hidden="true" class="material-icons">1</i>
           </button>
-          <button class="btn-picto" type="button" aria-label="Delete" title="Delete">
-            <i aria-hidden="true" class="material-icons">delete</i>
-          </button>
+          </a>
+          <a href="{% url 'delete' todo.id %}">
+            <button class="btn-picto" type="button" aria-label="Delete" title="Delete">
+              <i aria-hidden="true" class="material-icons">delete</i>
+            </button>
+           </a>
         </div>
       </li>
-    </transition-group>
-    <togglebutton 
-                  label="Move done items at the end?"
-                  name="todosort"
-                  />
-  </template>
-  <p v-else class="emptylist">Your todo list is empty.</p>
+      {% else %}
+      <li>
+          <span class="label">{{ todo.text }}</span>
+          <div class="actions">
+            <a href="{% url 'complete' todo.id %}">
+            <button class="btn-picto" type="button">
+              1
+              <i aria-hidden="true" class="material-icons">1</i>
+            </button>
+             </a>
 
-  <form name="newform">
+            <a href="{% url 'delete' todo.id %}">
+            <button class="btn-picto" type="button" aria-label="Delete" title="Delete">
+              <i aria-hidden="true" class="material-icons">delete</i>
+            </button>
+            </a>
+          </div>
+        </li>
+      {% endif %}
+
+    {% endfor %}
+   </ul>
+     {% if not todo_list %}
+        <p class="emptylist">Your todo list is empty.</p>
+      {% else %}
+        <p class="emptylist"></p>
+      {% endif %}
+  <form name="newform" action="{% url 'add' %}" method="POST">
+    {% csrf_token %}
+
     <label for="newitem">Add to the todo list</label>
-    <input type="text" name="newitem" id="newitem" v-model="newitem">
+    {{ form.text }}
     <button type="submit">Add item</button>
+
   </form>
 </main>
 <!-- partial -->
