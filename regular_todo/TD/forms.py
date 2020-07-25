@@ -7,3 +7,4 @@ class TDF(forms.Form):
                                       'placeholder': 'enter',
                                       'name': 'newitem'}
                            ))
+    # check = forms.BooleanField(required=True,disabled=False,initial=False)

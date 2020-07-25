@@ -178,3 +178,10 @@ form button {
 	left:calc(100% - 4px - 16px);
 	opacity:1;
 }
+
+.tdl_linck{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+}

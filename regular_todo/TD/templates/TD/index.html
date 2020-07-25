@@ -27,12 +27,12 @@
     <li class="done">
         <span class="label">{{ todo.text }}</span>
         <div class="actions">
-          <a href="#">
-          <button class="btn-picto" type="button">
-            1
-            <i aria-hidden="true" class="material-icons">1</i>
-          </button>
-          </a>
+<!--          <a href="#">-->
+<!--          <button class="btn-picto" type="button">-->
+<!--            1-->
+<!--            <i aria-hidden="true" class="material-icons">1</i>-->
+<!--          </button>-->
+<!--          </a>-->
           <a href="{% url 'delete' todo.id %}">
             <button class="btn-picto" type="button" aria-label="Delete" title="Delete">
               <i aria-hidden="true" class="material-icons">delete</i>
@@ -42,14 +42,16 @@
       </li>
       {% else %}
       <li>
-          <span class="label">{{ todo.text }}</span>
+          <a href="{% url 'complete' todo.id %}" class="tdl_linck">
+            <span class="label">{{ todo.text }}</span>
+          </a>
           <div class="actions">
-            <a href="{% url 'complete' todo.id %}">
-            <button class="btn-picto" type="button">
-              1
-              <i aria-hidden="true" class="material-icons">1</i>
-            </button>
-             </a>
+
+<!--            <button class="btn-picto" type="button">-->
+<!--              1-->
+<!--              <i aria-hidden="true" class="material-icons">1</i>-->
+<!--            </button>-->
+
 
             <a href="{% url 'delete' todo.id %}">
             <button class="btn-picto" type="button" aria-label="Delete" title="Delete">
@@ -76,8 +78,6 @@
 
   </form>
 </main>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script><script  src="./script.js"></script>
 
 </body>
 </html>
